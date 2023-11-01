@@ -4,9 +4,28 @@ format: html
 editor: visual
 ---
 
-## Quarto
+## Load packages
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+```{r}
+library(tidyverse)
+```
+
+## Load data
+
+All the data is semi-colon separated, which we need to separate for it to be more readable
+
+```{r}
+
+Cancer_data <- read_csv("data.csv", col_names = TRUE, col_types = cols())
+Cancer_data
+```
+
+### Clean data - more readable
+
+```{r}
+clean_cancer_data <- Cancer_data |>
+  delim = ';',
+```
 
 ## Running Code
 
