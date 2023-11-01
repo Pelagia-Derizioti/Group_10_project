@@ -22,6 +22,8 @@ Cancer_data
 
 ### Clean data - more readable
 
+The separator ' ; ' makes it harder for the table to be read, so we need to convert it and make it into a tibble, as tidyverse works in tibbles.
+
 ```{r}
 clean_cancer_data <- Cancer_data |>
   delim = ';',
