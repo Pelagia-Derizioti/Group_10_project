@@ -8,16 +8,78 @@ editor: visual
 
 ```{r}
 library(tidyverse)
+library(dplyr)
 ```
 
 ## Load data
 
-All the data is semi-colon separated, which we need to separate for it to be more readable
+All the data is semi-colon separated, which we need to separate for it to be more readable.
 
 ```{r}
 
-Cancer_data <- read_csv("data.csv", col_names = TRUE, col_types = cols())
-Cancer_data
+cancer_data <- read.table('data.csv', header = TRUE, sep = ";", quote = "", check.names = FALSE)
+
+
+
+int_colnames = colnames(cancer_data)
+
+cols <- gsub('"', '', int_colnames)
+int_colnames
+
+
+# Generate a vector of new column names based on the format
+int_colnames <- sprintf(name_format, 1:ncol(cancer_data))
+
+# Set the new column names for the data frame
+colnames(cancer_data) <- new_column_names
+
+
+
+
+
+colnames(cancer_data) <- gsub('"', '', colnames(cancer_data))
+
+
+
+cancer_data_clean <- cancer_data |> colnames()
+  
+  
+  as_tibble()
+  
+  #mutate(across(everything(), gsub, pattern = '"', replacement = ''))
+  
+  
+  
+  
+  #rename_with(~str_replace(., '"', ''), .cols = everything())
+
+colnames(cancer_data)
+
+
+
+cancer_data_clean <- cancer_data |> as_tibble() |> mutate(colnames() = str_detect(colnames(), '"', ''))
+  
+  
+  #mutate(colnames = case_when(str_detect(colnames,'"', '')))
+  
+
+cancer_data_clean <- cancer_data |> colnames() <- gsub('"', '', colnames(cancer_data))
+
+
+mutate(site = case_when(str_detect(Samples, "^T") ~ "Tanzania",
+                          str_detect(Samples, "^V") ~ "Vietnam")) |>  
+
+cancer_data <- read.table('data.csv', header = TRUE, sep = ";", quote = "", check.names = FALSE)
+colnames(cancer_data) <- gsub('"', '', colnames(cancer_data))
+
+cancer_data[] <- lapply(cancer_data, function(x) gsub('"', '', x))
+
+cancer_data <- cancer_data |> rownames() = id
+
+#rownames(cancer_data) <- cancer_data$id
+cancer_data <- cancer_data[, -1]
+
+cancer_data
 ```
 
 ### Clean data - more readable
@@ -26,7 +88,7 @@ The separator ' ; ' makes it harder for the table to be read, so we need to conv
 
 ```{r}
 clean_cancer_data <- Cancer_data |>
-  delim = ';',
+  delim = ';'
 ```
 
 s the printing of code (only output is displayed).
