@@ -1,0 +1,29 @@
+---
+title: "Christina_clean"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+cancer_data <- read.table('data.csv', header = TRUE, sep = ";", quote = "", check.names = FALSE)
+
+cancer_data_tibble <- as_tibble(cancer_data)
+  
+# Clean and standardize column names 
+cancer_data_tibble <- cancer_data_tibble |>
+  rename_all(tolower) |>
+  rename_all(~ gsub("[^[:alnum:]]", " ", .))  # Replace non-alphanumeric characters with underscores
+
+# Remove quotation marks from all columns
+cancer_data_tibble[] <- lapply(cancer_data_tibble, function(x) gsub('"', '', x))
+
+
+# Display the tibble to check the changes
+print(cancer_data_tibble)
+  
+```
