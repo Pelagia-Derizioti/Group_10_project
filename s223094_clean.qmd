@@ -1,5 +1,5 @@
 ---
-title: "Christina_clean"
+title: "Clean"
 format: html
 editor: visual
 ---
@@ -12,7 +12,8 @@ library(dplyr)
 
 Seperated dataset: First part 
 ```{r}
-cancer_data_1 <- read.table('data_1.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
+cancer_data_1 <- read_tsv('01_dat_load_1.tsv')
+#cancer_data_1 <- read.table('data_1.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
 
 cancer_data_1_tibble <- as_tibble(cancer_data_1)
   
@@ -23,13 +24,13 @@ cancer_data_1_tibble <- cancer_data_1_tibble |>
 
 # Remove quotation marks from all columns
 cancer_data_1_tibble[] <- lapply(cancer_data_1_tibble, function(x) gsub('"', '', x))
-
+print(cancer_data_1_tibble)
 
 ```
 
 Second part:
 ```{r}
-cancer_data_2 <- read.table('data_2.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
+cancer_data_2 <- read_tsv('01_dat_load_2.tsv')
 
 cancer_data_2_tibble <- as_tibble(cancer_data_2)
   
@@ -41,13 +42,15 @@ cancer_data_2_tibble <- cancer_data_2_tibble |>
 # Remove quotation marks from all columns
 cancer_data_2_tibble[] <- lapply(cancer_data_2_tibble, function(x) gsub('"', '', x))
 
+print(cancer_data_2_tibble)
+
 ```
 
 
 Third part:
 ```{r}
-cancer_data_3 <- read.table('data_3.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
 
+cancer_data_3 <- read_tsv('01_dat_load_3.tsv')
 cancer_data_3_tibble <- as_tibble(cancer_data_3)
   
 # Clean and standardize column names 
@@ -58,14 +61,15 @@ cancer_data_3_tibble <- cancer_data_3_tibble |>
 # Remove quotation marks from all columns
 cancer_data_3_tibble[] <- lapply(cancer_data_3_tibble, function(x) gsub('"', '', x))
 
-
+print(cancer_data_3_tibble)
 ```
 
 Join dataset
 
 ```{r}
 
-full_data <- cancer_data_1_tibble |> full_join(cancer_data_2_tibble, by = ' id ') |> full_join(cancer_data_3_tibble, by = ' id ') |> write_tsv(file = "02_dat_clean.tsv")
+
+full_data <- cancer_data_1_tibble |> full_join(cancer_data_2_tibble, by = 'id ') |> full_join(cancer_data_3_tibble, by = 'id ') |> write_tsv(file = "02_dat_clean.tsv")
 
 ```
 
