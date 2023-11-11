@@ -1,24 +1,48 @@
 ---
-title: "Project_presentation"
+title: "Analysis of Breast cancer samples"
 format: revealjs
 editor: visual
+Author: Christina Christiansen s223094, Chunxu Han s220311, Matilde Uth s195796, Michelle Sollok s194681, Pelagia Derizioti s222822
 ---
 
-## Quarto
+## Introduction
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+-   The data set is based on breast cancer samples, digitized from fine needle aspirate images.
 
-## Bullets
+-   The data set is split in 3 different excel files, mean, SE and worst for each of the 10 parameters.
 
-When you click the **Render** button a document will be generated that includes:
+-   The state of the patients cancer is stated, whether it is benign or malignant.
 
--   Content authored with markdown
--   Output from executable code
+```{r echo=FALSE, out.width = "30%", fig.align = "center"}
+knitr::include_graphics("images/R_pipeline.png")
 
-## Code
+```
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+### Data parameters:
+
+-   Mean
+
+-   SE
+
+-   Worst
 
 ```{r}
-1 + 1
+# print data as they are split
 ```
+
+## Materials and Method
+
+```{r}
+# print the pipeline
+# dont know how
+```
+
+## Results
+
+efrgtnh
+
+## Discussion
+
+Qu
+
+## 
