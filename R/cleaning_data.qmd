@@ -1,48 +1,74 @@
 ---
-title: "Cleaning_data"
+title: "Clean"
 format: html
 editor: visual
 ---
-
-## Load packages
 
 ```{r}
 library(tidyverse)
 library(dplyr)
 ```
 
-## Load data
 
-All the data is semi-colon separated, which we need to separate for it to be more readable.
-
+Seperated dataset: First part 
 ```{r}
-cancer_data <- read.table('data.csv', header = TRUE, sep = ";", quote = "", check.names = FALSE)
+cancer_data_1 <- read_tsv('01_dat_load_1.tsv')
 
-cancer_data_tibble <- as_tibble(cancer_data)
+cancer_data_1_tibble <- as_tibble(cancer_data_1)
   
 # Clean and standardize column names 
-cancer_data_tibble <- cancer_data_tibble |>
+cancer_data_1_tibble <- cancer_data_1_tibble |>
   rename_all(tolower) |>
   rename_all(~ gsub("[^[:alnum:]]", " ", .))  # Replace non-alphanumeric characters with underscores
 
 # Remove quotation marks from all columns
-cancer_data_tibble[] <- lapply(cancer_data_tibble, function(x) gsub('"', '', x))
-
-
-
-# Display the tibble to check the changes
-print(cancer_data_tibble)
-
+cancer_data_1_tibble[] <- lapply(cancer_data_1_tibble, function(x) gsub('"', '', x))
+print(cancer_data_1_tibble)
 
 ```
 
-### Clean data - more readable
+Second part:
+```{r}
+cancer_data_2 <- read_tsv('01_dat_load_2.tsv')
 
-The separator ' ; ' makes it harder for the table to be read, so we need to convert it and make it into a tibble, as tidyverse works in tibbles.
+cancer_data_2_tibble <- as_tibble(cancer_data_2)
+  
+# Clean and standardize column names 
+cancer_data_2_tibble <- cancer_data_2_tibble |>
+  rename_all(tolower) |>
+  rename_all(~ gsub("[^[:alnum:]]", " ", .))  # Replace non-alphanumeric characters with underscores
+
+# Remove quotation marks from all columns
+cancer_data_2_tibble[] <- lapply(cancer_data_2_tibble, function(x) gsub('"', '', x))
+
+print(cancer_data_2_tibble)
+
+```
+
+
+Third part:
+```{r}
+
+cancer_data_3 <- read_tsv('01_dat_load_3.tsv')
+cancer_data_3_tibble <- as_tibble(cancer_data_3)
+  
+# Clean and standardize column names 
+cancer_data_3_tibble <- cancer_data_3_tibble |>
+  rename_all(tolower) |>
+  rename_all(~ gsub("[^[:alnum:]]", " ", .))  # Replace non-alphanumeric characters with underscores
+
+# Remove quotation marks from all columns
+cancer_data_3_tibble[] <- lapply(cancer_data_3_tibble, function(x) gsub('"', '', x))
+
+print(cancer_data_3_tibble)
+```
+
+Join dataset
 
 ```{r}
-clean_cancer_data <- Cancer_data |>
-  delim = ';'
+
+full_data <- cancer_data_1_tibble |> full_join(cancer_data_2_tibble, by = 'id ') |> full_join(cancer_data_3_tibble, by = 'id ') |> write_tsv(file = "02_dat_clean.tsv")
+
 ```
 
-s the printing of code (only output is displayed).
+
