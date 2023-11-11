@@ -1,18 +1,32 @@
 ---
 title: "Analysis of Breast cancer samples"
-format: revealjs
+format: 
+  revealjs:
+    theme: simple
 editor: visual
 Author: Christina Christiansen s223094, Chunxu Han s220311, Matilde Uth s195796, Michelle Sollok s194681, Pelagia Derizioti s222822
 ---
 
-## Introduction
+### Introduction 
 
-The data set is based on breast cancer samples, digitized from fine needle aspirate images. The data set is split in 3 different excel files, mean, SE and worst for each of the 10 parameters. The state of the patients cancer is stated, whether it is benign or malignant.
+::: columns
+::: {.column width="40%"}
+::: incremental
+-   The data set is based on breast cancer samples, digitized from fine needle aspirate images.
 
-```{r echo=FALSE, out.width = "300%", fig.align = "right"}
+-   The data set is split in 3 different excel files, mean, SE and worst for each of the 10 parameters.
+
+-   The state of the patients cancer is stated, whether it is benign or malignant.
+:::
+:::
+
+::: {.column width="60%"}
+```{r echo=FALSE, out.width = "80%", fig.align = "right"}
 knitr::include_graphics("images/R_pipeline.png")
 
 ```
+:::
+:::
 
 ### Data parameters:
 
