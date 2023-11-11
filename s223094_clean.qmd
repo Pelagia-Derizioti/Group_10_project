@@ -10,25 +10,6 @@ library(dplyr)
 ```
 
 
-Whole dataset
-```{r}
-cancer_data <- read.table('data.csv', header = TRUE, sep = ";", quote = "", check.names = FALSE) 
-
-cancer_data_tibble <- as_tibble(cancer_data)
-  
-# Clean and standardize column names 
-cancer_data_tibble <- cancer_data_tibble |>
-  rename_all(tolower) |>
-  rename_all(~ gsub("[^[:alnum:]]", " ", .))  # Replace non-alphanumeric characters with underscores
-
-# Remove quotation marks from all columns
-cancer_data_tibble[] <- lapply(cancer_data_tibble, function(x) gsub('"', '', x))
-  
-```
-
-
-
-
 Seperated dataset: First part 
 ```{r}
 cancer_data_1 <- read.table('data_1.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
