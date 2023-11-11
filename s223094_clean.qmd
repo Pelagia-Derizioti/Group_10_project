@@ -26,7 +26,7 @@ cancer_data_tibble[] <- lapply(cancer_data_tibble, function(x) gsub('"', '', x))
 
 
 # Display the tibble to check the changes
-#print(cancer_data_tibble)
+print(cancer_data_tibble)
   
 ```
 
@@ -71,6 +71,9 @@ cancer_data_2_tibble[] <- lapply(cancer_data_2_tibble, function(x) gsub('"', '',
 # Display the tibble to check the changes
 print(cancer_data_2_tibble)
 ```
+
+
+Third part:
 ```{r}
 cancer_data_3 <- read.table('data_3.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
 
@@ -87,6 +90,15 @@ cancer_data_3_tibble[] <- lapply(cancer_data_3_tibble, function(x) gsub('"', '',
 
 # Display the tibble to check the changes
 print(cancer_data_3_tibble)
+```
+```{r}
+
+full_data <- cancer_data_1_tibble |> full_join(cancer_data_2_tibble, by = ' id ') |> full_join(cancer_data_3_tibble, by = ' id ')
+#full_join(cancer_data_1_tibble, cancer_data_2_tibble, by=' id ') |> full_join(cancer_data_3_tibble, by=' id ')
+
+
+print(full_data)
+
 ```
 
 
