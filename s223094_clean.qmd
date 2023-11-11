@@ -1,0 +1,72 @@
+---
+title: "Christina_clean"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+
+Seperated dataset: First part 
+```{r}
+cancer_data_1 <- read.table('data_1.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
+
+cancer_data_1_tibble <- as_tibble(cancer_data_1)
+  
+# Clean and standardize column names 
+cancer_data_1_tibble <- cancer_data_1_tibble |>
+  rename_all(tolower) |>
+  rename_all(~ gsub("[^[:alnum:]]", " ", .))  # Replace non-alphanumeric characters with underscores
+
+# Remove quotation marks from all columns
+cancer_data_1_tibble[] <- lapply(cancer_data_1_tibble, function(x) gsub('"', '', x))
+
+
+```
+
+Second part:
+```{r}
+cancer_data_2 <- read.table('data_2.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
+
+cancer_data_2_tibble <- as_tibble(cancer_data_2)
+  
+# Clean and standardize column names 
+cancer_data_2_tibble <- cancer_data_2_tibble |>
+  rename_all(tolower) |>
+  rename_all(~ gsub("[^[:alnum:]]", " ", .))  # Replace non-alphanumeric characters with underscores
+
+# Remove quotation marks from all columns
+cancer_data_2_tibble[] <- lapply(cancer_data_2_tibble, function(x) gsub('"', '', x))
+
+```
+
+
+Third part:
+```{r}
+cancer_data_3 <- read.table('data_3.csv', header = TRUE, sep = ",", quote = "", check.names = FALSE)
+
+cancer_data_3_tibble <- as_tibble(cancer_data_3)
+  
+# Clean and standardize column names 
+cancer_data_3_tibble <- cancer_data_3_tibble |>
+  rename_all(tolower) |>
+  rename_all(~ gsub("[^[:alnum:]]", " ", .))  # Replace non-alphanumeric characters with underscores
+
+# Remove quotation marks from all columns
+cancer_data_3_tibble[] <- lapply(cancer_data_3_tibble, function(x) gsub('"', '', x))
+
+
+```
+
+Join dataset
+
+```{r}
+
+full_data <- cancer_data_1_tibble |> full_join(cancer_data_2_tibble, by = ' id ') |> full_join(cancer_data_3_tibble, by = ' id ') |> write_tsv(file = "02_dat_clean.tsv")
+
+```
+
+
