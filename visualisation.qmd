@@ -27,15 +27,10 @@ library(dplyr)
 # set seed
 set.seed(1234)
 
-ggplot(data = cancer_data,
-       mapping = aes(x = cancer_data$g3C09, color = event_label)) +
-  geom_density() +
-  labs()
  
 # Customize density plot
 ggplot(data = cancer_dataset, 
-       mapping = aes(x = cancer_dataset$`radius mean`, 
-           color = cancer_dataset$diagnosis)) +
+       mapping = aes(x = `radius mean`, color = diagnosis)) +
   
   geom_density(alpha = 0.5, 
                color = "black", 
