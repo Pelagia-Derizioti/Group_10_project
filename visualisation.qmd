@@ -30,15 +30,16 @@ set.seed(1234)
  
 # Customize density plot
 ggplot(data = cancer_dataset, 
-       mapping = aes(x = `radius mean`, color = diagnosis)) +
+       mapping = aes(x = `radius mean`, fill = as.factor(diagnosis))) +
   
-  geom_density(alpha = 0.5, 
+  geom_density(alpha = 0.8, 
                color = "black", 
-               size = 1) +
+               size = 0.5) +
   
-  scale_fill_manual(values = c("category1" = "red", "category2" = "blue")) +
+  scale_fill_manual(values = c("0" = "lightpink", "1" = "lightblue")) +
   labs(x = "Parameter", y = "Value", title = "Density Plot by Category") +
   theme_minimal()
+  
 ```
 
 Making violin plots of the parameters, based on benging or malignant
