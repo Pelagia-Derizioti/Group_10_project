@@ -19,39 +19,6 @@ cancer_dataset |>
 Making density plots of the parameters, based on benign or malignant
 
 ```{r}
-library(ggplot2)
-library(dplyr)
-
-
-
-# set seed
-set.seed(1234)
-
-cancer_dataset_long <- gather(cancer_dataset, key = "Parameter", value = "Value", `radius se`, `texture se`, `perimeter se`, `area se`, `smoothness se`, `concavity se`, `concave points se`, `symmetry se`, `fractal dimension se`, `compactness se`)
-
-cancer_dataset_long <- cancer_dataset_long |>
-  mutate(LogValue = log10(Value))
-
- 
-# Customize boxplot
-ggplot(data = cancer_dataset_long, 
-       aes(x = Parameter, y = LogValue, fill = as.factor(diagnosis))) +
-  
-  geom_boxplot(alpha = 0.8, 
-               color = "black", 
-               size = 0.5) +
-  
-  scale_fill_manual(values = c("0" = "lightpink", "1" = "lightblue")) +
-  labs(x = "Parameter", y = "Value", title = "Boxplot by Category") +
-  theme_minimal() +
-  theme(
-    plot.margin = margin(2, 0, 1, 1, "cm"),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  )
-
-```
-
-```{r}
 # Customize boxplot
 ggplot(data = cancer_dataset, 
        aes(y = `radius se`, fill = as.factor(diagnosis))) +
