@@ -56,8 +56,9 @@ Join dataset
 full_data <- cancer_data_1_tibble |> 
   full_join(cancer_data_2_tibble, by = 'id ') |> 
   full_join(cancer_data_3_tibble, by = 'id ')|>
+  as.tibble() |>
   mutate(`diagnosis ` = case_when(`diagnosis `== "M" ~ 0,
-    `diagnosis `== "D" ~ 1)) |> 
+    `diagnosis `== "B" ~ 1)) |> 
   write_tsv(file = "/net/pupil1/home/people/s194681/projects/Group_10_project/data/02_dat_clean.tsv")
 
 print(full_data)
