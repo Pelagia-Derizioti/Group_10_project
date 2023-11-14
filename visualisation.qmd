@@ -9,8 +9,9 @@ editor: visual
 ```{r}
 cancer_dataset <- read_tsv('/home/people/s223094/project/Group_10_project/data/02_dat_clean.tsv')
 
-cancer_dataset |> 
-  pluck(diagnosis)
+cancer_dataset |>
+  select(diagnosis) |>
+  print()
 ```
 
 ## Visualizations
@@ -26,15 +27,22 @@ library(dplyr)
 # set seed
 set.seed(1234)
 
+ggplot(data = cancer_data,
+       mapping = aes(x = cancer_data$g3C09, color = event_label)) +
+  geom_density() +
+  labs()
  
 # Customize density plot
-ggplot(cancer_dataset, aes(x = c(2:31), 
-                        fill = diagno)) +
+ggplot(data = cancer_dataset, 
+       mapping = aes(x = cancer_dataset$`radius mean`, 
+           color = cancer_dataset$diagnosis)) +
+  
   geom_density(alpha = 0.5, 
                color = "black", 
                size = 1) +
+  
   scale_fill_manual(values = c("category1" = "red", "category2" = "blue")) +
-  labs(x = "Value", y = "Density", title = "Density Plot by Category") +
+  labs(x = "Parameter", y = "Value", title = "Density Plot by Category") +
   theme_minimal()
 ```
 
