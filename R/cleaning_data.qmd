@@ -53,7 +53,14 @@ Join dataset
 
 ```{r}
 
-full_data <- cancer_data_1_tibble |> full_join(cancer_data_2_tibble, by = 'id ') |> full_join(cancer_data_3_tibble, by = 'id ') |> write_tsv(file = "/net/pupil1/home/people/s194681/projects/Group_10_project/data/02_dat_clean.tsv")
+full_data <- cancer_data_1_tibble |> 
+  full_join(cancer_data_2_tibble, by = 'id ') |> 
+  full_join(cancer_data_3_tibble, by = 'id ')|>
+  mutate(`diagnosis ` = case_when(`diagnosis `== "M" ~ 0,
+    `diagnosis `== "D" ~ 1)) |> 
+  write_tsv(file = "/net/pupil1/home/people/s194681/projects/Group_10_project/data/02_dat_clean.tsv")
+
+print(full_data)
 
 ```
 
