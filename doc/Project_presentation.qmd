@@ -7,14 +7,14 @@ editor: visual
 Author: Christina Christiansen s223094, Chunxu Han s220311, Matilde Uth s195796, Michelle Sollok s194681, Pelagia Derizioti s222822
 ---
 
-### Introduction 
+### Introduction {.smaller}
 
 ::: columns
 ::: {.column width="40%"}
 ::: incremental
--   The data set is based on breast cancer samples, digitized from fine needle aspirate images.
+-   The data set is based on breast cancer sample.
 
--   The data set is split in 3 different excel files, mean, SE and worst for each of the 10 parameters.
+-   Split into 10 parameters for; mean, SE, worst 
 
 -   The state of the patients cancer is stated, whether it is benign or malignant.
 :::
@@ -27,6 +27,8 @@ knitr::include_graphics("images/R_pipeline.png")
 ```
 :::
 :::
+
+
 
 ### Data parameters:
 
